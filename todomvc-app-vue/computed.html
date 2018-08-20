@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="../node_modules/vue/dist/vue.min.js"></script>
+	<style>
+		#box div {
+			width: 50px;
+			height: 50px;
+			background-color: red;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div id="box">
+
+	</div>
+	<script>
+		new Vue({
+			el: "#box",
+			data: {
+				cars:["大众","奔驰","奥迪","路虎"]
+			},
+			methods: {
+
+			}
+		})
+        
+        var person = {
+            age:18
+        };
+        person.sex = "男";
+        person["name"] = "张三丰";
+        console.log(person);
+
+        Object.defineProperty(person,"score",{
+            // value:98
+            // get 属性访问器
+            get: function(){
+                return 99;
+            },
+            set:function(){
+                console.log("set被调用");
+                
+            }
+        });
+        console.log(person.score);
+        
+	</script>
+</body>
+
+</html>

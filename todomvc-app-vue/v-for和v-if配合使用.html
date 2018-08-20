@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item, index) of items" :key="index" v-if="item%2 == 1">{{item}}</li>
+        </ul>
+        <ul>
+            <!-- 
+                显示所有的任务 v-if=“true”
+                显示完成的任务 v-if=“item.cpmpleted”
+                显示所有未完成任务 v-fi=“!item.completed”
+             -->
+            <li v-for="(item, index) in todos" v-if="filterStat" :key="index">{{item.title}}</li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data: {
+                filterStat:true,
+                items:[1,2,3,4,5,6],
+                todos:[{
+                    id:1,
+                    title:"aaa",
+                    completed:true
+                },
+                {
+                    id:2,
+                    title:"bbb",
+                    completed:false
+                },
+                {
+                    id:3,
+                    title:"ccc",
+                    completed:true
+                }
+            ]
+            }
+        })
+    </script>
+</body>
+</html>

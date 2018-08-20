@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <script>
+        let person = {
+            age:18
+        }
+        person.sex = "女";
+        person["name"] = "张三丰";
+        
+        // Object.defineProperty(person,"score",{
+        //     // value:98
+        //     // 属性访问器
+        //     get: function() {
+        //         return 99;
+        //     },
+        //     // 属性设置器
+        //     set: function() {
+        //         console.log("set被调用");
+        //     }
+        // })
+        // console.log(person.score); // 访问属性
+        // person.score = 100; // 设置属性 会调用set方法
+
+
+        // 给人添加分数 分数加入小于60 不允许添加 大于等于60 允许添加
+        let score = 90;
+        Object.defineProperty(person,"score",{
+            set: function(score) {
+                // console.log(score);
+                if(score <60) {
+                    throw new Error("你的成绩不合格!");
+                }else {
+                    console.log(score);
+                }
+            },
+            get: function() {
+                return score;
+            }
+        });
+        person.score = score;
+        console.log(person.score);
+    </script>
+</body>
+</html>

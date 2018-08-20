@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+	<div id="app">
+
+		<ul>
+			<!-- 
+                显示所有的任务 v-if=“true”
+                显示完成的任务 v-if=“item.cpmpleted”
+                显示所有未完成任务 v-fi=“!item.completed”
+             -->
+			<li v-for="(item, index) of filterTodos" :key="index">{{item.title}}</li>
+		</ul>
+	</div>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			computed: {
+				/*
+				    all 返回所有的todos
+				    active 返回所有未完成（completed=false）
+				    completed 返回所有完成（completed=true）
+				*/
+				filterTodos: function () {
+					if (this.filterStat == "all") {
+                        return this.todos;
+                        
+					} else if (this.filterStat == "active") {
+						return this.todos.filter(function (item) {
+							return !item.completed;
+                        })
+                        
+					} else {
+                        return this.todos.filter(function (item) {
+							return item.completed;
+						})
+                    }
+
+				}
+			},
+			data: {
+				filterStat: "all",
+				todos: [{
+						id: 1,
+						title: "aaa",
+						completed: true
+					},
+					{
+						id: 2,
+						title: "bbb",
+						completed: false
+					},
+					{
+						id: 3,
+						title: "ccc",
+						completed: true
+					}
+				]
+			}
+		})
+
+	</script>
+</body>
+
+</html>
